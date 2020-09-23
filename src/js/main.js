@@ -1,6 +1,7 @@
 import MainSlider from './modules/slider/mainSlider';
 import PlayVideo from './modules/playVideo';
 import MiniSlider from './modules/slider/miniSlider';
+import Officer from './modules/officer';
 
 window.addEventListener('DOMContentLoaded', ()=>{
 'use strict';
@@ -38,5 +39,18 @@ const feedSlider =  new MiniSlider({
 });
 
 feedSlider.init();
+
+new Officer({
+    container: '.officerold', 
+    trigger: '.card__click'
+}).init();
+
+new Officer({
+    container: '.officernew', 
+    trigger: '.card__click'
+}).init();
+
+
+
 
 });

@@ -7,7 +7,6 @@ export default class MiniSlider extends Slider {
 
 
     animate () {
-        console.log( this.slides);
         this.slides.forEach(slide => {
             
             slide.querySelector('.card__title').style.opacity = '0.4';
