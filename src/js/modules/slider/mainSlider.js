@@ -1,13 +1,10 @@
-export default class Slider {
-    constructor(page,btns){
-        this.page = document.querySelector(page);
-        this.slides = this.page.children;
-        this.btns = document.querySelectorAll(btns);
-        this.popupBlock = document.querySelector('.hanson');
+import Slider from './slider';
 
-        this.slideIndex = 1;
-    }
-    showSlide(n) {
+export default class MainSlider extends Slider  {
+     constructor ( btn, activeClass) {
+         super(btn, activeClass);
+     }
+     showSlide(n) {
         if (n > this.slides.length) {
             n = 1;
         }
@@ -37,6 +34,9 @@ export default class Slider {
         this.slideIndex = n;
     }
 
+
+
+
     plusSlide(n) {
         this.showSlide(this.slideIndex + n);
     }
@@ -55,5 +55,4 @@ export default class Slider {
 
         
     }
-    
 }
