@@ -2,6 +2,7 @@ import MainSlider from './modules/slider/mainSlider';
 import PlayVideo from './modules/playVideo';
 import MiniSlider from './modules/slider/miniSlider';
 import Officer from './modules/officer';
+import Forms from './modules/forms';
 
 window.addEventListener('DOMContentLoaded', ()=>{
 'use strict';
@@ -50,7 +51,7 @@ new Officer({
     trigger: '.card__click'
 }).init();
 
-
+new Forms('.form').bindForm();  
 
 
 });

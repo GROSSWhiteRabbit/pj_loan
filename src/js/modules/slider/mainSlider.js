@@ -27,10 +27,10 @@ export default class MainSlider extends Slider  {
         
         this.slides.forEach(slide => {
             slide.style.display = 'none';
-            slide.classList.remove('bounceInUp');
+            slide.classList.remove('slideInUp');
         });
         this.slides[n-1].style.display = 'block';
-        this.slides[n-1].classList.add('animated','bounceInUp');
+        this.slides[n-1].classList.add('animated','slideInUp');
         this.slideIndex = n;
     }
 
