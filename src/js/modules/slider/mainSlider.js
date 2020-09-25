@@ -1,8 +1,8 @@
 import Slider from './slider';
 
 export default class MainSlider extends Slider  {
-     constructor ( btn, activeClass) {
-         super(btn, activeClass);
+     constructor ( btnsNext, activeClass, btnsPrev) {
+         super(btnsNext, activeClass, btnsPrev);
      }
      showSlide(n) {
         if (n > this.slides.length) {
@@ -13,11 +13,14 @@ export default class MainSlider extends Slider  {
         }
         try{
             if (n == 3) {
-                setTimeout(()=>{
-                    this.popupBlock.style.opacity = '1';
-                    this.popupBlock.classList.add('animated', 'fadeInUp');
+                if(this.popupBlock){
+                    setTimeout(()=>{
+                        this.popupBlock.style.opacity = '1';
+                        this.popupBlock.classList.add('animated', 'fadeInUp');
+    
+                    },3000);
+                }
 
-                },3000);
             } else {
                 this.popupBlock.style.opacity = '0';
                 this.popupBlock.classList.remove('fadeInUp');
@@ -40,17 +43,41 @@ export default class MainSlider extends Slider  {
     plusSlide(n) {
         this.showSlide(this.slideIndex + n);
     }
-    render(){
-        this.popupBlock = document.querySelector('.hanson');
 
-        this.btns.forEach(btn => {
-            btn.addEventListener('click', ()=>{
+    bindTriggers(){
+        try{
+            this.btnsPrev.forEach(btn =>{ 
+                btn.addEventListener('click', (e)=>{
+                    e.preventDefault();
+                    this.plusSlide(-1);
+                });
+            });
+        } catch(e){}
+        this.btnsNext.forEach(btn => {
+            btn.addEventListener('click', (e)=>{
+                e.preventDefault();
                 this.plusSlide(1);
             });
-            btn.parentNode.previousElementSibling.addEventListener('click', ()=>{
-                this.showSlide(1);
-            });
+            if (btn.parentNode.previousElementSibling.classList.contains('logo')){
+
+                btn.parentNode.previousElementSibling.addEventListener('click', ()=>{
+                    this.showSlide(1);
+                });
+                
+            }
+
         });
+    }
+
+    render(){
+        try{ 
+            if(this.container) {
+                this.popupBlock = document.querySelector('.hanson');
+            
+                this.bindTriggers();
+            // this.showSlide(this.slideIndex);
+            }
+        } catch(e ){console.error(e);}
 
 
         

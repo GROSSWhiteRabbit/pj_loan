@@ -14,7 +14,6 @@ export default class Forms {
     maskForPhone(){
         function setCursorPosition(pos, elem){
             elem.focus();
-            console.log(elem);
     
             if(elem.setSelectionRange) {
                 elem.setSelectionRange(pos,pos);
@@ -28,7 +27,7 @@ export default class Forms {
         }
     
         function createMask(event){
-            
+            // this for listener
             let matrix = '+1 (___) ___-____',
             i = 0,
             dif = matrix.replace(/\D/gi, ''),
