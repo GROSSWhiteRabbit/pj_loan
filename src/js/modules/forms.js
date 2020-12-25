@@ -111,10 +111,12 @@ export default class Forms {
                     messageBlock.textContent = this.message.success;
                 }).catch((e)=> {
                     console.error(e); 
+                    messageBlock.style.color = 'red';
                     messageBlock.textContent = this.message.failure;
                 }).finally(()=>{
                     form.reset();
                     setTimeout(()=>{
+                        messageBlock.style.color = "#9ec73d";
                         messageBlock.remove(); 
                     }, 3000);
                 });

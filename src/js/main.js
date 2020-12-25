@@ -16,7 +16,7 @@ import Download from './modules/download';
     moduleSlider.render();
 
 
-    new PlayVideo('.showup .play','.overlay').init();
+    new PlayVideo('.play','.overlay').init();
     new PlayVideo('.module__video-item .play','.overlay').init();
 
 
@@ -35,9 +35,10 @@ import Download from './modules/download';
         next: '.modules .slick-next',
         prev: '.modules .slick-prev',
         animated: true,
-        autoPlay: true
+        autoPlay: true,
+        activeClass: 'card-active'
     });
-
+    
     modulesSlider.init();
 
     const feedSlider =  new MiniSlider({

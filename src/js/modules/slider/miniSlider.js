@@ -8,12 +8,13 @@ export default class MiniSlider extends Slider {
 
     animate () {
         this.slides.forEach(slide => {
-            
             slide.querySelector('.card__title').style.opacity = '0.4';
             slide.querySelector('.card__controls-arrow').style.opacity = '0';
+
         });
         this.slides[0].querySelector('.card__title').style.opacity = '1';
         this.slides[0].querySelector('.card__controls-arrow').style.opacity = '1';
+
     }
 
     decorizeSlides (){
@@ -32,7 +33,7 @@ export default class MiniSlider extends Slider {
 
         this.container.addEventListener('mouseleave', ()=>{
             clearInterval(this.timer);
-            this.timer = setInterval(()=>this.nextSlide(), 3000 );
+            this.StartAutoPlay();
         });
     }
 
@@ -56,9 +57,17 @@ export default class MiniSlider extends Slider {
     }
     bindTriggers() {
         this.next[0].addEventListener('click', ()=>{
+            if(this.autoPlay) {
+                clearInterval(this.timer);
+                this.StartAutoPlay()
+            }
             this.nextSlide();
         });
         this.prev[0].addEventListener('click', ()=> {
+            if(this.autoPlay) {
+                clearInterval(this.timer);
+                this.StartAutoPlay()
+            }
             this.prevSlide();
         });
     }
@@ -71,6 +80,9 @@ export default class MiniSlider extends Slider {
             }
         });
         this.slides = arr;
+    }
+    StartAutoPlay() {
+        this.timer = setInterval(()=>this.nextSlide(), 5000 );
     }
 
     init(){
@@ -87,9 +99,9 @@ export default class MiniSlider extends Slider {
                                             align-items: flex-start;`;
             this.bindTriggers();
             if(this.autoPlay) {
-               this.timer = setInterval(()=>this.nextSlide(), 3000 );
-               this.unlockTimerByMouse();
-            }
+                this.StartAutoPlay();
+                this.unlockTimerByMouse();
+             }
         } catch(e) {}
 
     }

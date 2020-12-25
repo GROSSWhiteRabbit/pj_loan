@@ -10,7 +10,7 @@ const dist = "./dist/";
 gulp.task("copy-html", () => {
     return gulp.src("./src/*.html")
                 .pipe(gulp.dest(dist))
-                // .pipe(browsersync.stream());
+                .pipe(browsersync.stream());
 });
 
 gulp.task("build-js", () => {
@@ -42,26 +42,26 @@ gulp.task("build-js", () => {
                       }
                 }))
                 .pipe(gulp.dest(dist))
-                // .on("end", browsersync.reload);
+                .on("end", browsersync.reload);
 });
 
 gulp.task("copy-assets", () => {
     return gulp.src("./src/assets/**/*.*")
                 .pipe(gulp.dest(dist + "/assets"))
-                // .on("end", browsersync.reload);
+                .on("end", browsersync.reload);
 });
 
 gulp.task("watch", () => {
-//     browsersync.init({
-//         server: {
-//             baseDir: "./dist/",
-//             serveStaticOptions: {
-//                 extensions: ["html"]
-//             }
-//         },
-// 		port: 4000,
-// 		notify: true
-//     });
+    browsersync.init({
+        server: {
+            baseDir: "./dist/",
+            serveStaticOptions: {
+                extensions: ["html"]
+            }
+        },
+		port: 4000,
+		notify: true
+    });
     
     gulp.watch("./src/*.html", gulp.parallel("copy-html"));
     gulp.watch("./src/assets/**/*.*", gulp.parallel("copy-assets"));
